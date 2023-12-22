@@ -1,0 +1,9 @@
+.sidebar {
+    min-height: 80vh;
+    padding-right: 0px;
+}
+
+.sidebar a {
+    color: black;
+    text-decoration: none;
+}

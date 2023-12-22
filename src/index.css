@@ -1,0 +1,11 @@
+/* Oculta la barra de desplazamiento para Chrome, Safari y Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+   
+/* Oculta la barra de desplazamiento para IE, Edge y Firefox */
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    min-height: 100vh;
+}
