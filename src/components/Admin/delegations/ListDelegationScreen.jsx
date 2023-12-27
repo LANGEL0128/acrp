@@ -60,23 +60,25 @@ export const ListDelegationScreen = () => {
     }
 
     const handleDelete = async (id) => {
-        setloading(true);
-        await deleteDelegation(id).then(response => {
-            setDelegations(delegations.filter(delegation => delegation.uuid != id));
-            toast.success(response.data?.message);
-        }).catch(error => {
-            if(error.response?.status == 401) {
-                dispatch({
-                    type: types.logout
-                })
-                toast.error('Ha expirado la sesión');
-                navigate(app.url_login);
-            } else {
-                toast.error(error.response?.data?.message);
-            }
-            console.log(error);
-        });
-        setloading(false);
+        if (confirm("¿Estás seguro que deseas eliminar esta delegación?")) {
+            setloading(true);
+            await deleteDelegation(id).then(response => {
+                setDelegations(delegations.filter(delegation => delegation.uuid != id));
+                toast.success(response.data?.message);
+            }).catch(error => {
+                if(error.response?.status == 401) {
+                    dispatch({
+                        type: types.logout
+                    })
+                    toast.error('Ha expirado la sesión');
+                    navigate(app.url_login);
+                } else {
+                    toast.error(error.response?.data?.message);
+                }
+                console.log(error);
+            });
+            setloading(false);
+        }
     }
 
     useEffect(() => {

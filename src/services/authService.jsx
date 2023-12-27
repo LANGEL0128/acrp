@@ -8,3 +8,5 @@ export const logout = () => axios.get(app.api_domain + 'auth/logout');
 export const refresh = () => axios.get(app.api_domain + 'auth/refresh');
 
 export const me = () => axios.get(app.api_domain + 'auth/me');
+
+export const profile = (data) => axios.post(app.api_domain + 'auth/profile', data);

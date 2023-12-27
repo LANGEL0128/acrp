@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from 'react-toastify';
@@ -7,15 +7,18 @@ import { showEvent, updateEvent } from '../../../services/eventService';
 import { app } from '../../../config/app';
 import { types } from '../../../helpers/types';
 import { listDelegationSimple } from '../../../services/delegationService';
+import { AuthContext } from '../../../helpers/AuthContext';
 
 export const EditEventScreen = () => {
 
   const tags_name = 'eventos';
+  const navigate = useNavigate();
   const params = useParams();
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const [loading, setLoading] = useState(false);
   const [delegations, setDelegations] = useState([]);
   const [eventx, setEventx] = useState({});
+  const { dispatch } = useContext(AuthContext);
 
   const getDelegations = async () => {
     setLoading(true);

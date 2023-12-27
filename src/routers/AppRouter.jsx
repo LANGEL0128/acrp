@@ -22,6 +22,14 @@ import { ListEventScreen } from '../components/Admin/events/ListEventScreen';
 import { AddEventScreen } from '../components/Admin/events/AddEventScreen';
 import { EditEventScreen } from '../components/Admin/events/EditEventScreen';
 import { ShowEventScreen } from '../components/Admin/events/ShowEventScreen';
+import { ListInterestScreen } from '../components/Admin/interest/ListInterestScreen';
+import { AddInterestScreen } from '../components/Admin/interest/AddInterestScreen';
+import { EditInterestScreen } from '../components/Admin/interest/EditInterestScreen';
+import { ListUserScreen } from '../components/Admin/user/ListUserScreen';
+import { AddUserScreen } from '../components/Admin/user/AddUserScreen';
+import { EditUserScreen } from '../components/Admin/user/EditUserScreen';
+import { ShowUserScreen } from '../components/Admin/user/ShowUserScreen';
+import { ProfileScreen } from '../components/Admin/auth/ProfileScreen';
 
 // Hay que implementar los PrivateRoute y PublicRoute
 export const AppRouter = () => {
@@ -47,6 +55,14 @@ export const AppRouter = () => {
                 <Route path="proyectos/add" element={<AddProjectScreen />} />
                 <Route path="proyectos/edit/:id" element={<EditProjectScreen />} />
                 <Route path="proyectos/show/:id" element={<ShowProjectScreen />} />
+                <Route path="intereses" element={<ListInterestScreen />} />
+                <Route path="intereses/add" element={<AddInterestScreen />} />
+                <Route path="intereses/edit/:id" element={<EditInterestScreen />} />
+                <Route path="usuarios" element={<ListUserScreen />} />
+                <Route path="usuarios/add" element={<AddUserScreen />} />
+                <Route path="usuarios/edit/:id" element={<EditUserScreen />} />
+                <Route path="usuarios/show/:id" element={<ShowUserScreen />} />
+                <Route path="perfil" element={<ProfileScreen />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
             <Route path="*" element={<Navigate to="/admin" replace />} />

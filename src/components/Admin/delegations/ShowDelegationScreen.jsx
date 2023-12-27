@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import ImgDefault from '../../../assets/default.jpg'
 import { ClipLoader } from 'react-spinners';
 import { showDelegation } from '../../../services/delegationService';
+import { AuthContext } from '../../../helpers/AuthContext';
 
 export const ShowDelegationScreen = () => {
     
     const params = useParams();
+    const navigate = useNavigate();
     const [delegation, setDelegation] = useState({});
     const [loading, setLoading] = useState(false);
+    const { dispatch } = useContext(AuthContext);
 
     const getDelegation = async () => {
         setLoading(true);

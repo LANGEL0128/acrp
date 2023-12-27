@@ -7,12 +7,12 @@ import { ClipLoader } from 'react-spinners';
 import { AuthContext } from '../../../helpers/AuthContext';
 import { types } from '../../../helpers/types';
 import { Pagination } from '../tpl/Pagination';
-import { deleteProject, listProject } from '../../../services/projectService';
+import { changeUser, deleteUser, listUser } from '../../../services/userService';
 
-export const ListProjectScreen = () => {
+export const ListUserScreen = () => {
 
-    const tags_name = 'proyectos';
-    const [projects, setProjects] = useState([]);
+    const tags_name = 'usuarios';
+    const [users, setUsers] = useState([]);
     const [pagination, setPagination] = useState([]);
     const [loading, setloading] = useState(false);
     const { dispatch } = useContext(AuthContext);
@@ -29,7 +29,7 @@ export const ListProjectScreen = () => {
                 ...params,
                 search
             }
-        getProjects(params);
+        getUsers(params);
     }
 
     const handlePageFilter = (page) => {
@@ -39,14 +39,14 @@ export const ListProjectScreen = () => {
                 per_page,
                 page
             }
-            getProjects(params);
+            getUsers(params);
         }
     }
 
-    const getProjects = async (queryParams = {}) => {
+    const getUsers = async (queryParams = {}) => {
         setloading(true);
-        await listProject(queryParams).then(response => {
-            setProjects(response.data.data.items);
+        await listUser(queryParams).then(response => {
+            setUsers(response.data.data.items);
             setPagination(response.data.data.pagination);
         }).catch(error => {
             if(error.response?.status == 401) {
@@ -61,10 +61,10 @@ export const ListProjectScreen = () => {
     }
 
     const handleDelete = async (id) => {
-        if (confirm("¿Estás seguro que deseas eliminar este proyecto?")) {
+        if (confirm("¿Estás seguro que deseas eliminar este usuario?")) {
             setloading(true);
-            await deleteProject(id).then(response => {
-                setProjects(projects.filter(project => project.uuid != id));
+            await deleteUser(id).then(response => {
+                setUsers(users.filter(user => user.uuid != id));
                 toast.success(response.data?.message);
             }).catch(error => {
                 if(error.response?.status == 401) {
@@ -82,15 +82,40 @@ export const ListProjectScreen = () => {
         }
     }
 
+    const handleChange = async (id) => {
+        setloading(true);
+            await changeUser(id).then(response => {
+                setUsers(users.map(user => {
+                    if(user.uuid == id) {
+                        user.status = response.data.data.status;
+                    }   
+                    return user;
+                }))
+                toast.success(response.data?.message);
+            }).catch(error => {
+                if(error.response?.status == 401) {
+                    dispatch({
+                        type: types.logout
+                    })
+                    toast.error('Ha expirado la sesión');
+                    navigate(app.url_login);
+                } else {
+                    toast.error(error.response?.data?.message);
+                }
+                console.log(error);
+            });
+            setloading(false);
+    }
+
     useEffect(() => {
-        getProjects();
+        getUsers();
     }, []);
     
 
     return (
         <div className="card animate__animated animate__fadeIn shadow-sm">
             <div className="card-header">
-                <h2>Listado de Proyectos</h2>
+                <h2>Listado de Usuarios</h2>
             </div>
             <div className="card-body">
                 <Link to={"/admin/"+tags_name+"/add"} className='btn btn-primary btn-sm'>Agregar</Link>
@@ -125,25 +150,33 @@ export const ListProjectScreen = () => {
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Título</th>
+                                        <th scope="col">Nombre</th>
                                         <th scope="col">Imagen</th>
-                                        <th scope="col">Categoría</th>
+                                        <th scope="col">Usuario</th>
+                                        <th scope="col">Estado</th>
                                         <th scope="col">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                        projects.map((project, i) => {
+                                        users.map((user, i) => {
                                             return (
-                                                <tr key={ project.uuid }>
+                                                <tr key={ user.uuid }>
                                                     <th scope="row">{ i+1 }</th>
-                                                    <td>{ project.title }</td>
-                                                    <td><img src={ project.photo !== 'null' ? project.photo : ImgDefault } width={120} height={80} alt="" /></td>
-                                                    <td>{ project.category }</td>
+                                                    <td>{ user.name + ' ' + user.surname + ' ' + user.second_surname }</td>
+                                                    <td><img src={ user.photo != 'null' ? user.photo : ImgDefault } width={120} height={80} alt="" /></td>
+                                                    <td>{ user.username }</td>
+                                                    <td>{ user.status ? 'Activo' : 'Inactivo' }</td>
                                                     <td>
-                                                        <Link className='btn btn-info btn-sm' to={ '/admin/'+tags_name+'/show/'+project.uuid }>Ver</Link>
-                                                        <Link className='btn btn-warning btn-sm' to={ '/admin/'+tags_name+'/edit/'+project.uuid }>Editar</Link>
-                                                        <button className='btn btn-danger btn-sm' onClick={ () => handleDelete(project.uuid) }>Eliminar</button>
+                                                        <Link className='btn btn-info btn-sm' to={ '/admin/'+tags_name+'/show/'+user.uuid }>Ver</Link>
+                                                        <Link className='btn btn-warning btn-sm' to={ '/admin/'+tags_name+'/edit/'+user.uuid }>Editar</Link>
+                                                        <button className='btn btn-danger btn-sm' onClick={ () => handleDelete(user.uuid) }>Eliminar</button>
+                                                        {
+                                                            (user.role != 'Administrador') ? 
+                                                            <button className='btn btn-secondary btn-sm' onClick={ () => handleChange(user.uuid) }>{ user.status ? 'Inactivar' : 'Activar' }</button>
+                                                            : ''
+                                                        }
+                                                        
                                                     </td>
                                                 </tr>
                                             );

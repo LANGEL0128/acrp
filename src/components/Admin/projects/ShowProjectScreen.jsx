@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import ImgDefault from '../../../assets/default.jpg'
-import { showPublication } from '../../../services/publicationService';
 import { ClipLoader } from 'react-spinners';
 import { showProject } from '../../../services/projectService';
+import { AuthContext } from '../../../helpers/AuthContext';
 
 export const ShowProjectScreen = () => {
     
     const tags_name = 'proyectos';
     const params = useParams();
+    const navigate = useNavigate();
     const [project, setProject] = useState({});
     const [loading, setLoading] = useState(false);
+    const { dispatch } = useContext(AuthContext);
 
     const getProject = async () => {
         setLoading(true);

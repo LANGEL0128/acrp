@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import ImgDefault from '../../../assets/default.jpg'
 import { showPublication } from '../../../services/publicationService';
 import { ClipLoader } from 'react-spinners';
 import { showEvent } from '../../../services/eventService';
 import { types } from '../../../helpers/types';
 import { app } from '../../../config/app';
+import { AuthContext } from '../../../helpers/AuthContext';
 
 export const ShowEventScreen = () => {
     
     const tags_name = 'eventos';
+    const navigate = useNavigate();
     const params = useParams();
     const [eventx, setEventx] = useState({});
     const [loading, setLoading] = useState(false);
+    const { dispatch } = useContext(AuthContext);
 
     const getEvent = async () => {
         setLoading(true);
@@ -62,7 +65,7 @@ export const ShowEventScreen = () => {
                             <p><em>Delegaci&oacute;n: </em> { eventx.delegation?.name }</p>
                             <p><em>Fecha: </em> { eventx.datetime }</p>
                             <p><em>Descripci&oacute;n: </em> { eventx.description }</p>
-                            <p><em>Direcci&oacute;n: </em> { eventx.description }</p>
+                            <p><em>Direcci&oacute;n: </em> { eventx.address }</p>
                         </div>
                         <div className="col-12 d-flex justify-content-end">
                             <Link to={"/admin/"+tags_name} className='btn btn-secondary' >Atrás</Link>

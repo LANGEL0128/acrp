@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import ClipLoader from "react-spinners/ClipLoader";
-import { showPublication, updatePublication } from '../../../services/publicationService';
 import { toast } from 'react-toastify';
 import { showProject, updateProject } from '../../../services/projectService';
 import { app } from '../../../config/app';
+import { AuthContext } from '../../../helpers/AuthContext';
 
 export const EditProjectScreen = () => {
 
   const tags_name = 'proyectos';
   const params = useParams();
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
   const [loading, setLoading] = useState(false);
   const [isCheckedDeletePhoto, setIsCheckedDeletePhoto] = useState(false);
   const [project, setProject] = useState({});
+  const { dispatch } = useContext(AuthContext);
 
   const handleChangeDeletePhoto = () => {
     setIsCheckedDeletePhoto(!isCheckedDeletePhoto);

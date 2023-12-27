@@ -60,23 +60,25 @@ export const ListPublicationScreen = () => {
     }
 
     const handleDelete = async (id) => {
-        setloading(true);
-        await deletePublication(id).then(response => {
-            setPublications(publications.filter(publication => publication.uuid != id));
-            toast.success(response.data?.message);
-        }).catch(error => {
-            if(error.response?.status == 401) {
-                dispatch({
-                    type: types.logout
-                })
-                toast.error('Ha expirado la sesión');
-                navigate(app.url_login);
-            } else {
-                toast.error(error.response?.data?.message);
-            }
-            console.log(error);
-        });
-        setloading(false);
+        if (confirm("¿Estás seguro que deseas eliminar esta publicación?")) {
+            setloading(true);
+            await deletePublication(id).then(response => {
+                setPublications(publications.filter(publication => publication.uuid != id));
+                toast.success(response.data?.message);
+            }).catch(error => {
+                if(error.response?.status == 401) {
+                    dispatch({
+                        type: types.logout
+                    })
+                    toast.error('Ha expirado la sesión');
+                    navigate(app.url_login);
+                } else {
+                    toast.error(error.response?.data?.message);
+                }
+                console.log(error);
+            });
+            setloading(false);
+        }
     }
 
     useEffect(() => {

@@ -53,18 +53,25 @@ export const Header = () => {
                         </ul>
                         <div className="d-flex align-items-center">
                             <p className='mt-2 mx-3'>Sea Bienvenido/a { user.name } </p>
-                            <button 
-                                type='button' 
-                                onClick={ handleLogout } 
-                                className='btn btn-success'
-                            ><ClipLoader
-                                color="fff"
-                                loading={loading}
-                                size={20}
-                                aria-label="Loading Spinner"
-                                data-testid="loader"
-                            /> Cerrar Sesión
-                            </button>
+                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li className="nav-item dropdown">
+                                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Perfil
+                                    </a>
+                                    <ul className="dropdown-menu">
+                                        <li><span className="dropdown-item" href="#" style={{cursor: 'pointer'}}><Link to='/admin/perfil' style={{textDecoration: 'none', color: 'black'}}>Mi Perfil</Link></span></li>
+                                        <li><hr className="dropdown-divider" /></li>
+                                        <li><span className="dropdown-item" onClick={ handleLogout } style={{cursor: 'pointer'}}><ClipLoader
+                                                color="fff"
+                                                loading={loading}
+                                                size={20}
+                                                aria-label="Loading Spinner"
+                                                data-testid="loader"
+                                            />Cerrar Sesión</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

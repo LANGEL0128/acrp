@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import ImgDefault from '../../../assets/default.jpg'
 import { showPublication } from '../../../services/publicationService';
 import { ClipLoader } from 'react-spinners';
+import { AuthContext } from '../../../helpers/AuthContext';
 
 export const ShowPublicationScreen = () => {
     
     const params = useParams();
+    const navigate = useNavigate();
     const [publication, setPublication] = useState({});
     const [loading, setLoading] = useState(false);
+    const { dispatch } = useContext(AuthContext);
 
     const getPublication = async () => {
         setLoading(true);
