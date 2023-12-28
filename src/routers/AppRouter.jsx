@@ -77,7 +77,7 @@ export const AppRouter = () => {
                 <Route path="perfil" element={<ProfileScreen />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
-            <Route path="/" element={<FrontLayout />}>
+            <Route path="" element={<FrontLayout />}>
                 <Route path="" element={<PrincipalScreen />} />
                 <Route path="/delegaciones" element={<FrontDelegationScreen />} />
                 <Route path="/delegaciones/show/:id" element={<FrontShowDelegationScreen />} />
