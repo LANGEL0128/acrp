@@ -8,7 +8,7 @@ import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../../helpers/AuthContext';
 import { types } from '../../../helpers/types';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../../../services/authService';
 
 
@@ -81,6 +81,14 @@ export const LoginScreen = () => {
                             </button>
                         </div>
                     </form>
+                    <div className="row">
+                        <div className="col-12 d-flex justify-content-center">
+                            <Link to="/" style={{ cursor: 'pointer', textDecoration: 'none', color: 'black' }}>Ir al sitio principal</Link>
+                        </div>
+                        <div className="col-12 d-flex justify-content-center">
+                            <Link to="/inscribirse" style={{ cursor: 'pointer', textDecoration: 'none', color: 'black' }}>Inscríbete como Miembro</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

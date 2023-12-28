@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import ImgDefault from '../../../assets/default.jpg'
-import { showPublication } from '../../../services/publicationService';
 import { ClipLoader } from 'react-spinners';
 import { showEvent } from '../../../services/eventService';
 import { types } from '../../../helpers/types';
