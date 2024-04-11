@@ -5,10 +5,10 @@ import { app } from '../../../config/app'
 export const FrontHeader = () => {
     return (
         <header className='shadow-sm border-bottom'>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
                 <div className="container">
                     <Link className="navbar-brand" to="/">
-                        <img src={ '.'+app.public_url+'/assets/logoACRP.png' } alt="LogoACRP" width="70" height="24" />
+                        <img src={ app.public_url+'/assets/logoACRP.png' } alt="LogoACRP" width="70" height="24" />
                     </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>

@@ -37,7 +37,7 @@ export const Header = () => {
 
     return (
         <header className='shadow-sm border-bottom'>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
                     <Link className="navbar-brand" to="/admin">
                         <img src={ '.'+app.public_url+'/assets/logoACRP.png' } alt="LogoACRP" width="70" height="24" />

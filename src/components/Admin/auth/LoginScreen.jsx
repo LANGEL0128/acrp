@@ -48,11 +48,14 @@ export const LoginScreen = () => {
 
     return (
         <div className="d-flex justify-content-center align-items-center box-content">
-            <div className="card col-md-4">
+            <div className="card col-md-4 animate__animated animate__fadeIn shadow-sm">
                 <div className="card-header">
                     <h2>Inicie Sesión en { app.name }</h2>
                 </div>
                 <div className="card-body">
+                    <div className="text-center">
+                        <img src={ '/assets/logoACRP.png' } alt="LogoACRP" width="70" height="24" />
+                    </div>
                     <form onSubmit={ handleSubmit(handleLogin) }>
                         <div className="mb-3">
                             <label htmlFor="username">Usuario</label>
@@ -83,10 +86,10 @@ export const LoginScreen = () => {
                     </form>
                     <div className="row">
                         <div className="col-12 d-flex justify-content-center">
-                            <Link to="/" style={{ cursor: 'pointer', textDecoration: 'none', color: 'black' }}>Ir al sitio principal</Link>
+                            <Link to="/">Ir al sitio principal</Link>
                         </div>
                         <div className="col-12 d-flex justify-content-center">
-                            <Link to="/inscribirse" style={{ cursor: 'pointer', textDecoration: 'none', color: 'black' }}>Inscríbete como Miembro</Link>
+                            <Link to="/inscribirse">Inscríbete como Miembro</Link>
                         </div>
                     </div>
                 </div>

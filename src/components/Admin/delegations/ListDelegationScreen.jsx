@@ -35,10 +35,16 @@ export const ListDelegationScreen = () => {
     const handlePageFilter = (page) => {
         if(page >= 1 && page <= pagination.last_page && page != pagination.current_page) {
             const per_page = document.getElementById('per_page').value;
+            const search = document.getElementById('search').value;
             let params = {
                 per_page,
                 page
             }
+            if(search) 
+                params = {
+                    ...params,
+                    search
+                }
             getDelegations(params);
         }
     }

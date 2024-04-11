@@ -98,6 +98,7 @@ export const AddUserScreen = () => {
     formData.append('scientific_year', data.scientific_year);
     formData.append('interests', interetsSelected);
     formData.append('others_interest', data.others_interest);
+    formData.append('description', data.description);
     await createUser(formData).then(response => {
       toast.success(response.data?.message);
       navigate('/admin/'+tags_name);
@@ -389,6 +390,10 @@ export const AddUserScreen = () => {
               <div className="col-md-12 mb-3">
                 <label htmlFor="others_interest" className="form-label">Otros Intereses</label>
                 <textarea type="text" className={ 'form-control'  } id="others_interest" name='others_interest' { ...register('others_interest') } placeholder="Otros Intereses" />
+              </div>
+              <div className="col-md-12 mb-3">
+                <label htmlFor="description" className="form-label">Descripción</label>
+                <textarea type="text" className={ 'form-control'  } id="description" name='description' { ...register('description') } placeholder="Descripción" />
               </div>
               <div className="col-12 d-flex justify-content-end">
                 <button type="submit" className="btn btn-primary mx-2">

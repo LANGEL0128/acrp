@@ -3,9 +3,9 @@ import { ToastContainer } from 'react-toastify';
 export const app = {
     name: 'ACRP',
     api_domain: 'https://luisangel.fullstackcolombia.com.co/api/',
-    public_url: '/acrp',
+    // public_url: '/acrp',
     // api_domain: 'http://localhost:8000/api/',
-    // public_url: '',
+    public_url: '',
     showError: (error) => {
         if (error.response) {
           // La solicitud se realizó y el servidor respondió con un estado fuera de la gama 2xx

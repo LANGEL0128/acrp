@@ -34,14 +34,11 @@ import { PrincipalScreen } from '../components/Front/home/PrincipalScreen';
 import { FrontInscriptionScreen } from '../components/Front/member/FrontInscriptionScreen';
 import { FrontShowMemberScreen } from '../components/Front/member/FrontShowMemberScreen';
 import { FrontMemberScreen } from '../components/Front/member/FrontMemberScreen';
-import { FrontShowEventScreen } from '../components/Front/event/FrontShowEventScreen';
 import { FrontEventScreen } from '../components/Front/event/FrontEventScreen';
-import { FrontShowPublicationScreen } from '../components/Front/publication/FrontShowPublicationScreen';
 import { FrontPublicationScreen } from '../components/Front/publication/FrontPublicationScreen';
 import { FrontShowDelegationScreen } from '../components/Front/delegation/FrontShowDelegationScreen';
 import { FrontDelegationScreen } from '../components/Front/delegation/FrontDelegationScreen';
 import { FrontProjectScreen } from '../components/Front/project/FrontProjectScreen';
-import { FrontShowProjectScreen } from '../components/Front/project/FrontShowProjectScreen';
 
 // Hay que implementar los PrivateRoute y PublicRoute
 export const AppRouter = () => {
@@ -82,11 +79,8 @@ export const AppRouter = () => {
                 <Route path="/delegaciones" element={<FrontDelegationScreen />} />
                 <Route path="/delegaciones/show/:id" element={<FrontShowDelegationScreen />} />
                 <Route path="/publicaciones" element={<FrontPublicationScreen />} />
-                <Route path="/publicaciones/show/:id" element={<FrontShowPublicationScreen />} />
                 <Route path="/proyectos" element={<FrontProjectScreen />} />
-                <Route path="/proyectos/show/:id" element={<FrontShowProjectScreen />} />
                 <Route path="/eventos" element={<FrontEventScreen />} />
-                <Route path="/eventos/show/:id" element={<FrontShowEventScreen />} />
                 <Route path="/miembros" element={<FrontMemberScreen />} />
                 <Route path="/miembros/show/:id" element={<FrontShowMemberScreen />} />
                 <Route path="/inscribirse" element={<FrontInscriptionScreen />} />

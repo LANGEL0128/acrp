@@ -117,6 +117,7 @@ export const EditUserScreen = () => {
     formData.append('scientific_category', data.scientific_category ?? '');
     formData.append('scientific_year', data.scientific_year ?? '');
     formData.append('others_interest', data.others_interest ?? '');
+    formData.append('description', data.description ?? '');
     formData.append('responsability', data.responsability ?? '');
     formData.append('interests', interetsSelected);
     await updateUser(params.id, formData).then(response => {

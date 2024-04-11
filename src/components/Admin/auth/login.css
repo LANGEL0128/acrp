@@ -1,3 +1,55 @@
 .box-content {
     min-height: 100vh;
+    background-image: url(/src/assets/cuban-flag.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
+
+.card {
+    box-shadow: 0px 0px 3px 1px gray;
+    background-color: rgba(30, 30, 30, .6);
+    color: white;
+    backdrop-filter: blur(2px);
+    transition: all ease .4s;
+    border-radius: 5px;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 10px 1px gray;
+}
+
+.card-header {
+    background-color: rgba(30, 30, 30, .4);
+}
+
+a {
+    color: orange;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all ease .4s;
+}
+
+a:hover {
+    color: red;
+}
+
+button[type="submit"] {
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border: orange 2px solid;
+    transition: all ease .4s;
+    background-color: red;
+    padding: 5px 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: orange;
+    border: red 2px solid;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+

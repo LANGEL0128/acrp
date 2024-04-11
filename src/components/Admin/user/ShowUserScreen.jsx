@@ -118,6 +118,7 @@ export const ShowUserScreen = () => {
                                     <p><em>Año Científica: </em> { user.member.scientific_year }</p>
                                     <p><em>Intereses: </em> { interests.join(', ') }</p>
                                     <p><em>Otros Intereses: </em> { user.member.others_interest }</p>
+                                    <p><em>Descripción: </em> { user.member.description }</p>
                                 </div>
                             </> : ''
                         }
